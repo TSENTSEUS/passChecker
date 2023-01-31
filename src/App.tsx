@@ -10,9 +10,9 @@ function App() {
 
   const [fields, setFields] = useState<IPassword>({
       password:'',
-      easy: 'false',
-      medium: 'false',
-      hard: 'false'
+      easy: '',
+      medium: '',
+      hard: ''
   })
   const password = fields.password
 
