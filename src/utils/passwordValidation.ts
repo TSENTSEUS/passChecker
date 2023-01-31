@@ -1,5 +1,4 @@
 import {IPassword} from "../interface";
-import {type} from "os";
 
 export const passwordValidation = (fields: IPassword,setState: Function) => {
     const { password } = fields

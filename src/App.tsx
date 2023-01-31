@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import { IPassword } from './interface';
-import {passwordValidation} from "./utils/passwordValidation";
+import { passwordValidation } from "./utils/passwordValidation";
 export const App = () => {
 
   const [fields, setFields] = useState<IPassword>({
