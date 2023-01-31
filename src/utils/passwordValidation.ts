@@ -9,22 +9,23 @@ export const passwordValidation = (fields: IPassword,setState: Function) => {
     const lettersAndDigits = onlyLettersAndDigits.test(password)
     const digitsAndSymbols = onlyDigitsAndSymbols.test(password)
 
-    if(password.length >= 8) {
-        setState({...fields, easy: 'red', medium:'gray', hard: 'gray' })
-
-    if(lettersAndDigits || lettersAndSymbols || digitsAndSymbols) {
-            setState({...fields, easy: 'medium', medium: 'medium', hard: 'gray'})
+    const getValue = (level: "easy" | "medium" | "hard") => {
+        if(!password.length) {
+            return "gray"
+        } else if (password.length < 8) {
+            return "red"
+        } else if (lettersSymbolsDigits) {
+            return "green"
+        } else if (lettersAndDigits || lettersAndSymbols || digitsAndSymbols) {
+            return level === "hard" ? "gray" : "medium";
+        } else {
+            return level === "easy" ? "red" : "gray";
         }
-
-    if(lettersSymbolsDigits) {
-            setState({...fields, easy: 'green', medium: 'green', hard: 'green'})
-        }
     }
-
-    if(password.length < 8 && password.length > 0) {
-        setState({...fields, easy: 'red', medium: 'red', hard: 'red'})
-    }
-    if(password.length === 0) {
-        setState({...fields, easy: 'gray', medium: 'gray', hard: 'gray'})
-    }
+    setState(() => ({
+        password,
+        easy: getValue("easy"),
+        medium: getValue("medium"),
+        hard: getValue("hard")
+    }));
 }
